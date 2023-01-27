@@ -1,42 +1,43 @@
 # action.yml
 name: "Ingestinator"
 description: "Generate LSTs in style"
-# inputs:
-#   java-version:
-#     description: "What version of Java does the project use? 8, 11, 17"
-#     required: true
-#     default: "8"
-#   build-tool:
-#     description: "Maven or Gradle"
-#     required: true
-#     default: "maven"
-#   build-tool-version:
-#     description: "Specify what a specific version of Maven or Gradle"
-#     required: false
-#   style:
-#     description: "Style format of your project"
-#     required: false
-#   repository-type:
-#     description: "Nexus or Artifactory?"
-#     required: true
-#     default: "nexus"
-#   repository-url:
-#     description: "Location of your artifact repository"
-#     required: true
-#   repository-username:
-#     description: "Username with write/publish permissions to the artifact repository"
-#     required: true
-#   repository-password:
-#     description: "Password for artifact repository account"
-#     required: true
+inputs:
+  repository-type:
+    description: "Nexus or Artifactory?"
+    required: true
+    default: "nexus"
+  repository-url:
+    description: "Location of your artifact repository"
+    required: true
+  repository-username:
+    description: "Username with write/publish permissions to the artifact repository"
+    required: true
+  repository-password:
+    description: "Password for artifact repository account"
+    required: true
+  java-version:
+    description: "What version of Java does the project use? 8, 11, 17"
+    required: true
+    default: "8"
+  build-tool:
+    description: "Maven or Gradle"
+    required: true
+    default: "maven"
+  build-actions:
+    description: "Specific build command"
+    required: false
+  style:
+    description: "Style format of your project"
+    required: false
 runs:
   using: "docker"
   image: "Dockerfile"
-  # env:
-  #   REPOSITORY_TYPE: ${{ inputs.repository-type }}
-  #   REPOSITORY_URL: ${{ inputs.repository-url }}
-  #   REPOSITORY_USERNAME: ${{ inputs.repository-username }}
-  #   REPOSITORY_PASSWORD: ${{ inputs.repository-password }}
-  #   JAVA_VERSION: ${{ inputs.java-version }}
-  #   BUILD_TOOL: ${{ inputs.build-tool }}
-  #   STYLE: ${{ inputs.style }}
+  env:
+    REPOSITORY_TYPE: ${{ inputs.repository-type }}
+    REPOSITORY_URL: ${{ inputs.repository-url }}
+    REPOSITORY_USERNAME: ${{ inputs.repository-username }}
+    REPOSITORY_PASSWORD: ${{ inputs.repository-password }}
+    JAVA_VERSION: ${{ inputs.java-version }}
+    BUILD_TOOL: ${{ inputs.build-tool }}
+    BUILD_ACTION: ${{ inputs.build-action }}
+    STYLE: ${{ inputs.style }}
